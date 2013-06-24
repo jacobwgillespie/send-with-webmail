@@ -1,21 +1,16 @@
-<html>
-<head>
-	<script type="text/javascript" src="scripts/app.js"></script>
-<script>
-
 var app = new App(Storage_LocalStorage);
 app.load();
 
 function getReplacement(href) {
-	app.load();
-	var pattern = app.getPattern();
-	if ((typeof pattern == "undefined") || (pattern == "")) {
-		chrome.tabs.create({url: "options.html"});
-		return;
-	}
-	
-	var m = new MailtoLink(href);	
-	return m.replaceTokens(pattern);
+  app.load();
+  var pattern = app.getPattern();
+  if ((typeof pattern == "undefined") || (pattern == "")) {
+    chrome.tabs.create({url: "options.html"});
+    return;
+  }
+
+  var m = new MailtoLink(href);
+  return m.replaceTokens(pattern);
 }
 
 chrome.extension.onConnect.addListener(function(port) {
@@ -33,9 +28,5 @@ console.log(msg);
 
 var pattern = app.getPattern();
 if ((typeof pattern == "undefined") || (pattern == "")) {
-	chrome.tabs.create({url: "options.html"});
+  chrome.tabs.create({url: "options.html"});
 }
-
-</script>
-</head>
-</html>
